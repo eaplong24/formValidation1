@@ -18,9 +18,9 @@ function validateContactNum(contactNum) {
     return numericRegex.test(contactNum);
 }
 
-function validateZipCode(zipcCode) {
+function validateZipCode(zipCode) {
     var numericRegex = /^[0-9]+$/;
-    return numericRegex.test(zipcCode);
+    return numericRegex.test(zipCode);
 }
 
 let setError = (element, message) => {
@@ -52,7 +52,7 @@ let validateInputs = () => {
     let brgyAdd = document.getElementById("brgyAdd");
     let cityAdd = document.getElementById("cityAdd");
     let provinceAdd = document.getElementById("provinceAdd");
-    let zipcCode = document.getElementById("zipcCode");
+    let zipCode = document.getElementById("zipCode");
 
     let firstNameValue = firstName.value.trim();
     let lastNameValue = lastName.value.trim();
@@ -64,7 +64,7 @@ let validateInputs = () => {
     let brgyAddValue = brgyAdd.value.trim();
     let cityAddValue = cityAdd.value.trim();
     let provinceAddValue = provinceAdd.value.trim();
-    let zipcCodeValue = zipcCode.value.trim();
+    let zipCodeValue = zipCode.value.trim();
 
     let firstNameChecker = false;
     let lastNameChecker = false;
@@ -76,7 +76,7 @@ let validateInputs = () => {
     let brgyAddChecker = false;
     let cityAddChecker = false;
     let provinceAddChecker = false;
-    let zipcCodeChecker = false;
+    let zipCodeChecker = false;
 
     if(firstNameValue === '') {
         setError(firstName, "Firstname is required");
@@ -137,7 +137,7 @@ let validateInputs = () => {
         setError(confirmPass, "Please confirm your password");
         confirmPassChecker = false;
     } else if (confirmPassValue !== passwordValue) {
-        setError(confirmPass, "Password doesn't matach");
+        setError(confirmPass, "Password doesn't match");
         confirmPassChecker = false;
     } else {
         setSuccess(confirmPass);
@@ -176,15 +176,15 @@ let validateInputs = () => {
         provinceAddChecker = true;
     }
 
-    if (zipcCodeValue === '') {
-        setError(zipcCode, "Zip Code is required");
-        zipcCodeChecker = false;
-    } else if (!validateZipCode(zipcCodeValue)) {
-        setError(zipcCode, "Zip Code must be numeric")
-        zipcCodeChecker = false;
+    if (zipCodeValue === '') {
+        setError(zipCode, "Zip Code is required");
+        zipCodeChecker = false;
+    } else if (!validateZipCode(zipCodeValue)) {
+        setError(zipCode, "Zip Code must be numeric")
+        zipCodeChecker = false;
     } else {
-        setSuccess(zipcCode);
-        zipcCodeChecker = true;
+        setSuccess(zipCode);
+        zipCodeChecker = true;
     }
 
     if(firstNameChecker && 
@@ -192,13 +192,15 @@ let validateInputs = () => {
         emailChecker &&
         contactNumChecker &&
         passwordChecker &&
-        confirmPass &&
+        confirmPassChecker &&
         streetAddChecker &&
         brgyAddChecker &&
         cityAddChecker &&
         provinceAddChecker &&
-        zipcCodeChecker
+        zipCodeChecker
         ) {
+
+    console.log(firstNameChecker, lastNameChecker, emailChecker, contactNumChecker, passwordChecker, confirmPassChecker, streetAddChecker, brgyAddChecker, cityAddChecker, provinceAddChecker, zipCodeChecker);
 
         let userData =  {
             FirstName : document.getElementById("firstName").value,
@@ -212,7 +214,7 @@ let validateInputs = () => {
             BrgyAdd : document.getElementById("brgyAdd").value,
             CityAdd : document.getElementById("cityAdd").value,
             ProvinceAdd : document.getElementById("provinceAdd").value,
-            ZipcCode : document.getElementById("zipcCode").value
+            ZipCode : document.getElementById("zipCode").value
         }
         userDatas.push(userData);
         document.forms[0].reset();
